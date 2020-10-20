@@ -6,7 +6,7 @@ authors = ["Boris Shminke"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.9"
 jupyterlab = "^2.2.8"
 pyspark = "^3.0.1"
 numpy = "^1.19.2"
