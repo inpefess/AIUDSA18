@@ -1,13 +1,8 @@
 """
 This code should be run with `spark-submit` and `packages` argument:
 
-spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1 \
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.4 \
              spark-and-kafka.py
-
-In separate terminal we can run a terminal Kafka consumer to see the result:
-
-kafka-console-consumer.sh --topic result_topic \
-                          --bootstrap-server localhost:9092
 """
 from time import sleep
 
@@ -25,7 +20,11 @@ spark = (
 # to read from Kafka, one need to specify Kafka servers and topic names
 main_topic = (
     spark.readStream.format("kafka")
-    .option("kafka.bootstrap.servers", "localhost:9092")
+    .option("kafka.bootstrap.servers", "pkc-ewzgj.europe-west4.gcp.confluent.cloud:9092")
+    .option("security.protocol", "SASL_SSL")
+    .option("sasl.mechanism", "PLAIN")
+    .option("sasl.plain.username", "6T3V4SHANAZC5EXK")
+    .option("sasl.plain.password", "CJFtpZwGh/w8mltYpFJRSs2ePW+ho2/7VbwMn4ZarXej23Gm9p1cGgArfsP3o342")
     .option("subscribe", "main_topic")
     .option("startingOffsets", "earliest")
     .load()
