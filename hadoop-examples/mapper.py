@@ -3,8 +3,9 @@
 counter = 0
 while True:
     try:
-        counter += 1
+        # use `raw_input()` for Python 2
         input()
     except EOFError:
         break
+    counter += 1
 print(counter)
